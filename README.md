@@ -27,8 +27,8 @@ Optional OCR for scanned pages: install the Tesseract binary and `pip install py
 
 ## Deploying
 
-The Next.js frontend can be deployed directly to Vercel: import this repository, keep the
-project root as the repository root, and use the detected Next.js build settings. Add
+The Next.js frontend can be deployed directly to Vercel: set the project's Root Directory
+to `.` (the repository root) and Framework Preset to Next.js. Add
 `NEXT_PUBLIC_API_URL` in the Vercel project environment variables, set to the public origin
 of the Sakshya API (for example, `https://api.example.com`, without `/api/v1`). Redeploy
 after setting or changing it. The frontend defaults to `http://localhost:8000` only during
