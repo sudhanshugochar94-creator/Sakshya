@@ -25,6 +25,28 @@ npm run dev            # http://localhost:3000
 Open **Overview -> Load synthetic demo dossiers**, then follow the demo narrative below.
 Optional OCR for scanned pages: install the Tesseract binary and `pip install pytesseract`.
 
+## Deploying
+
+The Next.js frontend can be deployed directly to Vercel: import this repository, keep the
+project root as the repository root, and use the detected Next.js build settings. Add
+`NEXT_PUBLIC_API_URL` in the Vercel project environment variables, set to the public origin
+of the Sakshya API (for example, `https://api.example.com`, without `/api/v1`). Redeploy
+after setting or changing it. The frontend defaults to `http://localhost:8000` only during
+local development and reports a configuration error in production if this variable is missing.
+
+Vercel hosts the frontend only. The FastAPI backend in `backend/` must be deployed separately
+to a Python host, with a persistent volume for `SAKSHYA_DATA_DIR` because SQLite, original
+uploads, and derived files are stored on disk. Configure `SAKSHYA_ALLOWED_ORIGINS` on that
+backend with the comma-separated frontend origins, such as
+`https://your-project.vercel.app,https://www.example.com`. Do not deploy the backend on an
+ephemeral filesystem for real data; its current SQLite storage is not a shared/serverless database.
+For a Python service configured with `backend/` as its working directory, install with
+`pip install -r requirements.txt` and start with
+`python -m uvicorn main:app --host 0.0.0.0 --port $PORT`.
+
+**Prototype warning:** role headers are not production authentication. Do not expose the backend
+to real case data until real authentication, authorization, and data-protection controls are in place.
+
 Optional LLM wording for explanations (off by default; data-handling rules permitting):
 ```bash
 export SAKSHYA_LLM=anthropic ANTHROPIC_API_KEY=...   # SAKSHYA_LLM_MODEL overrides the model

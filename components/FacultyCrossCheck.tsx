@@ -18,7 +18,7 @@ export default function FacultyCrossCheck() {
       {loading && <Loading />}{error != null && <ErrorBox error={error} />}
       {data && (<>
         <p className="mb-2 text-xs text-slate-600">Scanned {data.rosters} faculty list(s), {data.people} named people. <b>Strong</b> = same UAN or PAN; <b>weak</b> = same or near-identical name with no identifier to confirm.</p>
-        {data.pairs.length === 0 ? <Empty>No person appears in more than one institution's faculty list.</Empty> : (
+        {data.pairs.length === 0 ? <Empty>No person appears in more than one institution&apos;s faculty list.</Empty> : (
           <ul className="space-y-2">{data.pairs.map((p: any, i: number) => (
             <li key={i} className="rounded-lg border border-slate-200 p-2.5 dark:border-slate-700">
               <div className="mb-1.5 flex items-center gap-2 text-xs"><span className={`rounded px-1.5 py-0.5 font-bold uppercase ${p.level === 'strong' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'}`}>{p.level}</span><span>{p.reason}</span></div>

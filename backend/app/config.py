@@ -22,6 +22,11 @@ ALERT_ESCALATION_HOURS = 24
 MAX_UPLOAD_BYTES = 25 * 1024 * 1024
 ALLOWED_EXT = {".pdf", ".png", ".jpg", ".jpeg", ".mp4"}
 MAX_RETRIES = 2
+CORS_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get("SAKSHYA_ALLOWED_ORIGINS", "*").split(",")
+    if origin.strip()
+]
 
 for d in (DATA_DIR, UPLOAD_DIR, DERIVED_DIR):
     d.mkdir(parents=True, exist_ok=True)

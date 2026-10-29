@@ -1,6 +1,6 @@
-@'
 node_modules/
 .next/
+.vercel/
 out/
 dist/
 build/
@@ -18,4 +18,8 @@ __pycache__/
 coverage/
 .DS_Store
 Thumbs.db
-'@ | Set-Content -Encoding utf8 .gitignore
+
+backend/data/*.db*
+backend/data/uploads/*
+backend/data/derived/*
+backend/data/demo_tmp/*

@@ -12,12 +12,12 @@ from fastapi.responses import FileResponse, Response
 from pydantic import BaseModel, Field
 
 from . import db, audit, rulepacks, supervisor, alerts, forensics, source_checker, proofcards, explain as explain_mod
-from .config import UPLOAD_DIR, DERIVED_DIR, MAX_UPLOAD_BYTES, ALLOWED_EXT, TOOL_VERSION
+from .config import UPLOAD_DIR, DERIVED_DIR, MAX_UPLOAD_BYTES, ALLOWED_EXT, TOOL_VERSION, CORS_ORIGINS
 from .findings import passport as build_passport
 
 app = FastAPI(title="Sakshya API", version="1.1.0",
               description="AI-assisted decision support for AICTE application scrutiny. Agents propose, rules verify, humans decide.")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
 
 ROLES = {"applicant", "scrutiny_officer", "specialist_reviewer", "rule_author", "regulatory_expert", "competent_authority", "administrator"}
 OFFICER = {"scrutiny_officer", "specialist_reviewer", "regulatory_expert", "competent_authority", "administrator"}
