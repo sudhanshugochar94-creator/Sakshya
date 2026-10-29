@@ -33,6 +33,8 @@ project root as the repository root, and use the detected Next.js build settings
 of the Sakshya API (for example, `https://api.example.com`, without `/api/v1`). Redeploy
 after setting or changing it. The frontend defaults to `http://localhost:8000` only during
 local development and reports a configuration error in production if this variable is missing.
+Vercel is configured to build the Next.js frontend; `backend/` is excluded from that deployment
+because it is hosted separately.
 
 Vercel hosts the frontend only. The FastAPI backend in `backend/` must be deployed separately
 to a Python host, with a persistent volume for `SAKSHYA_DATA_DIR` because SQLite, original
